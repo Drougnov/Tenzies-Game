@@ -9,7 +9,6 @@
   --board-bg: #F5F5F5;
   --text-clr: #4A4E74;
   --heading-clr: #2B283A;
-  --selected-num: #59E391;
   --btn-bg: #5035FF;
 }
 body{
@@ -45,7 +44,6 @@ body{
 .die-container .die{
   width: 2rem;
   height: 2rem;
-  background: white;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   display: flex;
@@ -56,9 +54,6 @@ body{
 .die:hover{
   transform: scale(1.005);
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15);
-}
-.die.hold{
-  background: var(--selected-num);
 }
 .die span{
   color: var(--heading-clr);
