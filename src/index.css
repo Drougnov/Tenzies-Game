@@ -20,6 +20,8 @@ body{
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 .board{
   max-width: 365px;
@@ -79,6 +81,13 @@ button:hover{
 }
 button:active{
   transform: translateY(-3px);
+}
+.confetti{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 @media(max-width: 350px){
   .board{
