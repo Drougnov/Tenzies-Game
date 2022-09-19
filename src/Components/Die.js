@@ -4,7 +4,10 @@ export default function Die(props){
     }
 
     return(
-    <div className="die" style={background}>
+    <div className="die"
+        style={background} 
+        onClick={props.holdDice}
+    >
         <span>{props.value}</span>
     </div>
     )
