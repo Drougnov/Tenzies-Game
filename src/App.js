@@ -1,7 +1,9 @@
 import React from 'react';
 import Die from './Components/Die';
 import { nanoid } from 'nanoid';
-import Confetti from 'react-confetti'
+import Confetti from 'react-confetti';
+import {Howl, Howler} from 'howler';
+import audio from './audio/win.mp3';
 
 export default function App(){
   const [dice, setDice] = React.useState(allNewDice())
@@ -32,6 +34,14 @@ export default function App(){
     }
   },[dice])
 
+  const sound = new Howl({
+    src: [audio]
+  })
+
+  if(tenzies){
+    sound.play();
+  }
+
   function holdDice(id){  //change the state of die when clicked
     setDice(oldDice => oldDice.map(die =>{
       return die.id===id ?
@@ -49,7 +59,7 @@ export default function App(){
         return die.isHeld ? die : generateDice();
       }))
     }else{
-      setTenzies(false)
+      setTenzies(false);
       setDice(allNewDice());
     }
   }
