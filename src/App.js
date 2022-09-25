@@ -72,7 +72,7 @@ export default function App(){
           </div>
           <button onClick={rollDice}>{tenzies ? "New Game":"Roll"}</button>
       </main>
-      {tenzies && <Confetti className="confetti" />}
+      {tenzies && <Confetti className="confetti" recycle={false} />}
     </div>
   )
 }
