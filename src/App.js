@@ -2,7 +2,7 @@ import React from 'react';
 import Die from './Components/Die';
 import { nanoid } from 'nanoid';
 import Confetti from 'react-confetti';
-import {Howl, Howler} from 'howler';
+import {Howl} from 'howler';
 import audio from './audio/win.mp3';
 
 export default function App(){
