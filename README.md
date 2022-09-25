@@ -30,7 +30,7 @@ This is a dice rolling and matching game called **Tenzies** made with React JS.
 
 ### Links
 
-- Live Site URL: 🚧Yet to add🚧
+- Live Site URL: [https://drougnov.github.io/Tenzies-Game/](https://drougnov.github.io/Tenzies-Game/)
 
 ## My process
 
