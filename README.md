@@ -47,7 +47,6 @@ This is a dice rolling and matching game called **Tenzies** made with React JS.
 I'm planning to add some of these features later in this project:
 
 - Put dot instead of numbers in die
-- Show how many rolls did the user take to match the dice
 - Show how much time did the user take to match the dice
 - Save the best time and rolls on localStorage
 
