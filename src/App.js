@@ -7,8 +7,9 @@ import winSound from './audio/win.mp3';
 import rollSound from './audio/roll.mp3';
 
 export default function App(){
-  const [dice, setDice] = React.useState(allNewDice())
-  const [tenzies, setTenzies] = React.useState(false)
+  const [dice, setDice] = React.useState(allNewDice());
+  const [tenzies, setTenzies] = React.useState(false);
+  const [audio, setAudio] = React.useState(true);
 
   function generateDice(){    //This variable/helper function holds the die object
     return {
@@ -35,19 +36,6 @@ export default function App(){
     }
   },[dice])
 
-  const victory = new Howl({
-    src: [winSound]
-  })
-
-  if(tenzies){
-    victory.play();
-  }
-
-  const roll = new Howl({
-    src: [rollSound]
-  })
-
-
   function holdDice(id){  //change the state of die when clicked
     setDice(oldDice => oldDice.map(die =>{
       return die.id===id ?
@@ -59,10 +47,22 @@ export default function App(){
     }))
   }
 
+  const victory = new Howl({
+    src: [winSound]
+  })
+
+  if(tenzies){
+    audio && victory.play();
+  }
+
+  const roll = new Howl({
+    src: [rollSound]
+  })
+
   function rollDice(){
     if(!tenzies){
       setDice(oldDice => oldDice.map(die=>{
-        roll.play();
+        audio && roll.play();
         return die.isHeld ? die : generateDice();
       }))
     }else{
@@ -71,10 +71,14 @@ export default function App(){
     }
   }
 
+  function toggleMute(){
+    setAudio(prevState => !prevState);
+  }
+
   const dieElements = dice.map((die) => {
     return <Die key={die.id}
                 value={die.value} 
-                isHeld={die.isHeld} 
+                isHeld={die.isHeld}
                 holdDice={()=> holdDice(die.id)} 
             />
   })
@@ -82,6 +86,7 @@ export default function App(){
   return(
     <div>
       <main className="board">
+        <button onClick={toggleMute} className="mute-btn">{audio ? "🔉" : "🔇"}</button>
           <h1>Tenzies</h1>
           <p>Roll untill the dice are the same. Click each die to freeze it at its current value between rolls.</p>
           <div className="die-container">
