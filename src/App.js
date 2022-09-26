@@ -5,6 +5,7 @@ import Confetti from 'react-confetti';
 import {Howl} from 'howler';
 import winSound from './audio/win.mp3';
 import rollSound from './audio/roll.mp3';
+import holdSound from './audio/hold.mp3';
 
 export default function App(){
   const [dice, setDice] = React.useState(allNewDice());
@@ -37,17 +38,7 @@ export default function App(){
     }
   },[dice])
 
-  function holdDice(id){  //change the state of die when clicked
-    setDice(oldDice => oldDice.map(die =>{
-      return die.id===id ?
-            {
-              ...die,
-              isHeld: !die.isHeld
-            } :
-            die;
-    }))
-  }
-
+  
   const victory = new Howl({
     src: [winSound]
   })
@@ -59,6 +50,22 @@ export default function App(){
   const roll = new Howl({
     src: [rollSound]
   })
+
+  const hold = new Howl({
+    src: [holdSound]
+  })
+
+  function holdDice(id){  //change the state of die when clicked
+    audio && hold.play();
+    setDice(oldDice => oldDice.map(die =>{
+      return die.id===id ?
+            {
+              ...die,
+              isHeld: !die.isHeld
+            } :
+            die;
+    }))
+  }
 
   function rollDice(){
     if(!tenzies){
