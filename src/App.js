@@ -10,6 +10,7 @@ export default function App(){
   const [dice, setDice] = React.useState(allNewDice());
   const [tenzies, setTenzies] = React.useState(false);
   const [audio, setAudio] = React.useState(true);
+  const [rollCount, setRollCount] = React.useState(0);
 
   function generateDice(){    //This variable/helper function holds the die object
     return {
@@ -32,7 +33,7 @@ export default function App(){
     const firstDiceValue = dice[0].value;
     const allSameValue = dice.every(die=> die.value === firstDiceValue);
     if(allDiceHeld && allSameValue){
-      setTenzies(true)
+      setTenzies(true);
     }
   },[dice])
 
@@ -65,9 +66,11 @@ export default function App(){
         audio && roll.play();
         return die.isHeld ? die : generateDice();
       }))
+      setRollCount(prevCount => prevCount + 1)
     }else{
       setTenzies(false);
       setDice(allNewDice());
+      setRollCount(0);
     }
   }
 
@@ -75,11 +78,16 @@ export default function App(){
     setAudio(prevState => !prevState);
   }
 
+  function startNewGame(){
+    setTenzies(false);
+    setDice(allNewDice());
+  }
+
   const dieElements = dice.map((die) => {
     return <Die key={die.id}
                 value={die.value} 
                 isHeld={die.isHeld}
-                holdDice={()=> holdDice(die.id)} 
+                holdDice={()=> holdDice(die.id)}
             />
   })
 
@@ -92,7 +100,14 @@ export default function App(){
           <div className="die-container">
             {dieElements}
           </div>
-          <button onClick={rollDice}>{tenzies ? "New Game":"Roll"}</button>
+          <button onClick={rollDice}>Roll</button>
+          {tenzies && <div className="scoreboard">
+            <h2>Congratulations!</h2>
+            <p className='rollCount'>Rolled: {rollCount}</p>
+            <p className="rolltime">Time Taken: 01:00:00</p>
+            <h3>Your Score: 4500</h3>
+            <button className='close' onClick={startNewGame}>New Game</button>
+          </div>}
       </main>
       {tenzies && <Confetti className="confetti" recycle={false} />}
     </div>

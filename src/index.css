@@ -64,7 +64,7 @@ body{
   font-family: 'Karla', sans-serif;
   font-weight: 700;
 }
-.board button{
+.board button, .scoreboard .close{
   color: white;
   background: var(--btn-bg);
   font-family: 'Karla', sans-serif;
@@ -76,6 +76,7 @@ body{
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.18);
   cursor: pointer;
   transition: all .3s linear;
+  z-index: 12;
 }
 button:hover{
   opacity: .8;
@@ -93,6 +94,34 @@ button:active{
   box-shadow: none;
   padding: 0;
   font-size: 1rem;
+  z-index: 0;
+}
+.board .scoreboard{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: .5rem;
+  padding: 2rem;
+  z-index: 10;
+}
+.scoreboard h2{
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+.scoreboard p{
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.scoreboard h3{
+  font-size: 1.2rem;
+  margin: 2rem 0;
+}
+.scoreboard .close{
+  bottom: 0;
+
 }
 .confetti{
   position: absolute;
@@ -100,6 +129,7 @@ button:active{
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 100;
 }
 @media(max-width: 350px){
   .board{
