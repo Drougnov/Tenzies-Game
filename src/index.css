@@ -119,10 +119,6 @@ button:active{
   font-size: 1.2rem;
   margin: 2rem 0;
 }
-.scoreboard .close{
-  bottom: 0;
-
-}
 .confetti{
   position: absolute;
   top: 0;
